@@ -1,4 +1,4 @@
-var mongoose = requiere ('mongoose');
+var mongoose = require ('mongoose');
 var Schema = mongoose.Schema;
 
 var AutomovilSchema = Schema({
@@ -7,7 +7,7 @@ var AutomovilSchema = Schema({
 	Modelo: String,
 	Año: Number,
 	Color: String,
-	Numero de Puertas: Number
+	NumPuertas: Number
 });
 
 module.exports = mongoose.model('Automovil', AutomovilSchema);

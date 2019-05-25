@@ -8,12 +8,12 @@ var Automovil= require('../models/Automoviles');
 router.post('/', function(req, res, next) {
   console.log(req.body);
   var auto=  Automovil({
-    Id: req.body.Id,,
+    Id: req.body.Id,
     Marca: req.body.Marca,
     Modelo: req.body.Modelo,
-    Año: req.body.Año
+    Año: req.body.Año,
     Color: req.body.Color,
-    Numero de Puertas: req.body.Numero de Puertas
+    NumPuertas: req.body.NumPuertas
   });
 
   auto.save(function(err,data){

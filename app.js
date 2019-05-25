@@ -7,11 +7,11 @@ var logger = require('morgan');
 
 //conexión a Mongoose
 var mongoose = require('mongoose');
-var Alumno = require('./models/Automoviles.js');
+var Autos= require('./models/Automoviles.js');
 var user='joserbp';
-var password='S2KzDvgJShI9h8Ke';
+var password='base3801';
 
-mongoose.connect('mongodb+srv://'+user+':'+password+'@cluster0-p1uhr.gcp.mongodb.net/IngSoftware?retryWrites=true', {
+mongoose.connect('mongodb+srv://'+user+':'+password+'@cluster1-ytuib.gcp.mongodb.net/Api?retryWrites=true', {
   useNewUrlParser: true
 }).then(() => { console.log('Conectado a Mongo DB Atlas')})
 .catch(err => console.log(err));
