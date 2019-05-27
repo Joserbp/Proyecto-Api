@@ -35,11 +35,11 @@ router.get('/', function(req, res, next) {
 });
 
 //GET por un ID
-router.get('/:AutoId', function(req, res, next) {
+router.get('/:AutosId', function(req, res, next) {
   Automovil.findOne({
-    'id': req.params.AutoId
+    'Id': req.params.AutosId
   }, function(err, data) {
-    if (datos == null) {
+    if (data == null) {
       res.status(404).json({
         mensaje: "No existe"
       });
@@ -54,7 +54,7 @@ router.get('/:AutoId', function(req, res, next) {
 //PUT para un ID
 router.put('/:AutosId',function(req, res, error){
   Automovil.findoneUpdate({
-    id: req.params.AutoId},{ 
+    'Id': req.params.AutosId},{ 
     'req.body.Marca' : NMarca,
     'req.body.Modelo': NModelo,
     'req.body.Año': NAño,
@@ -78,9 +78,9 @@ router.put('/', function (req, res){
 
 
 //DELETE para un ID
-router.delete('/:AutoId', function(req, res, next) {
+router.delete('/:AutosId', function(req, res, next) {
   Automovil.findOneAndDelete({
-    id: req.params.AutoId
+    'Id': req.params.AutosId
   }, function(err, data) {
     if (err) {
       res.status(404).json(err);
