@@ -6,7 +6,7 @@ var Automovil= require('../models/Automoviles');
 
 //POST de un auto nuevo
 router.post('/', function(req, res, next) {
-  console.log(req.body);
+
   var auto=  Automovil({
     Id: req.body.Id,
     Marca: req.body.Marca,
@@ -18,9 +18,9 @@ router.post('/', function(req, res, next) {
 
   auto.save(function(err,data){
     if (err) {
-      res.send('error');
+      res.status(404).json({mensaje: 'Error al guardar'});
     }else {
-      res.status(200).send(data);
+      res.status(201).json({mensaje: 'Auto guardado'})
     }
   });
 
@@ -28,8 +28,8 @@ router.post('/', function(req, res, next) {
 
 //GET de todos los elementos
 router.get('/', function(req, res, next) {
-  Computadora.find({},function(err,datos){
-    res.status(200).json(datos);
+  Automovil.find({},function(err,data){
+    res.status(200).json(data);
   });
 
 });
@@ -38,18 +38,44 @@ router.get('/', function(req, res, next) {
 router.get('/:AutoId', function(req, res, next) {
   Automovil.findOne({
     'id': req.params.AutoId
-  }, function(err, datos) {
+  }, function(err, data) {
     if (datos == null) {
       res.status(404).json({
         mensaje: "No existe"
       });
     } else {
-      res.status(200).json(datos);
+      res.status(200).json(data);
     }
 
   });
   //res.json(req.params.userId);
 });
+
+//PUT para un ID
+router.put('/:AutosId',function(req, res, error){
+  Automovil.findoneUpdate({
+    id: req.params.AutoId},{ 
+    'req.body.Marca' : NMarca,
+    'req.body.Modelo': NModelo,
+    'req.body.Año': NAño,
+    'req.body.Color': NColo,
+    'req.body.NumPuertas': NPuertas
+ }, function(err, data){
+    if(err){
+      res.status(404).json({mensaje: "No se encontro Id"});
+    } else{
+      res.status(200).json(data);
+    }
+  });
+});
+
+ //PUT para toda la base
+router.put('/', function (req, res){
+  res.status(405).json({mensaje:'Accion no permitida'});
+});
+
+
+
 
 //DELETE para un ID
 router.delete('/:AutoId', function(req, res, next) {
