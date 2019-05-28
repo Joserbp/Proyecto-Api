@@ -48,19 +48,12 @@ router.get('/:AutosId', function(req, res, next) {
     }
 
   });
-  //res.json(req.params.userId);
 });
 
 //PUT para un ID
 router.put('/:AutosId',function(req, res, error){
-  Automovil.findoneUpdate({
-    'Id': req.params.AutosId},{ 
-    'req.body.Marca' : NMarca,
-    'req.body.Modelo': NModelo,
-    'req.body.Año': NAño,
-    'req.body.Color': NColo,
-    'req.body.NumPuertas': NPuertas
- }, function(err, data){
+  let update =req.body;
+  Automovil.findOneAndUpdate({'Id': req.params.AutosId}, update, function(err, data){
     if(err){
       res.status(404).json({mensaje: "No se encontro Id"});
     } else{
