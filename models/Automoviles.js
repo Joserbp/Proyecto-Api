@@ -7,7 +7,8 @@ var AutomovilSchema = Schema({
 	Modelo: String,
 	Año: Number,
 	Color: String,
-	NumPuertas: Number
+	NumPuertas: Number,
+	Imagen: String,
 });
 
 module.exports = mongoose.model('Automovil', AutomovilSchema);

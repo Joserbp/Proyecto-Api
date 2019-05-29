@@ -13,7 +13,8 @@ router.post('/', function(req, res, next) {
     Modelo: req.body.Modelo,
     Año: req.body.Año,
     Color: req.body.Color,
-    NumPuertas: req.body.NumPuertas
+    NumPuertas: req.body.NumPuertas,
+    Imagen: req.body.Imagen
   });
 
   auto.save(function(err,data){
@@ -52,8 +53,8 @@ router.get('/:AutosId', function(req, res, next) {
 
 //PUT para un ID
 router.put('/:AutosId',function(req, res, error){
-  let update =req.body;
-  Automovil.findOneAndUpdate({'Id': req.params.AutosId}, update, function(err, data){
+    let update =req.body;
+  Automovil.replaceOne({'Id': req.params.AutosId}, update, function(err, data){
     if(err){
       res.status(404).json({mensaje: "No se encontro Id"});
     } else{
@@ -67,7 +68,22 @@ router.put('/', function (req, res){
   res.status(405).json({mensaje:'Accion no permitida'});
 });
 
+//PATCH para un ID
+router.patch('/:AutosId',function(req, res, error){
+  let update =req.body;
+  Automovil.findOneAndUpdate({'Id': req.params.AutosId}, update, function(err, data){
+    if(err){
+      res.status(404).json({mensaje: "No se encontro Id"});
+    } else{
+      res.status(200).json(data);
+    }
+  });
+});
 
+ //PATCH para toda la base
+router.patch('/', function (req, res){
+  res.status(405).json({mensaje:'Accion no permitida'});
+});
 
 
 //DELETE para un ID
